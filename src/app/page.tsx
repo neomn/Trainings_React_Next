@@ -2,7 +2,6 @@
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import TestComponent from './components/test_component';
 
 const darkTheme = createTheme({
   palette: {
@@ -14,7 +13,7 @@ const darkTheme = createTheme({
 export default function App() {
   return (
     <>
-      <TestComponent /> 
+      <h3>main page</h3>
     </>   
   );
 }
