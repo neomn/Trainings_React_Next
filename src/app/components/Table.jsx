@@ -31,6 +31,9 @@ export default function BasicTable() {
     failed: false
   });
 
+  // Add a function to check if any row is selected
+  const hasSelectedRows = () => tableData.some(row => row.selected);
+
   const handleStatusFilterChange = (status) => {
     const newFilterStatus = {
       ...filterStatus,
@@ -93,8 +96,34 @@ export default function BasicTable() {
         <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
-                <Stack direction="column">
+              <TableCell 
+                component="th" 
+                scope="row"
+                sx={{ fontWeight: 'bold', fontSize: '1.1rem', textAlign: 'center' }}
+              >
+                Dessert (100g serving)
+              </TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: '1.1rem', textAlign: 'center' }}>Calories</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: '1.1rem', textAlign: 'center' }}>Fat (g)</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: '1.1rem', textAlign: 'center' }}>Carbs (g)</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: '1.1rem', textAlign: 'center' }}>Protein (g)</TableCell>
+              <TableCell 
+                sx={{ 
+                  fontWeight: 'bold', 
+                  fontSize: '1.1rem',
+                  textAlign: 'center'
+                }}
+              >
+                Status
+              </TableCell>
+              <TableCell 
+                sx={{ 
+                  fontWeight: 'bold', 
+                  fontSize: '1.1rem',
+                  textAlign: 'center'
+                }}
+              >
+                <Stack direction="row" spacing={2} justifyContent="center">
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -117,12 +146,6 @@ export default function BasicTable() {
                   />
                 </Stack>
               </TableCell>
-              <TableCell sx={{ fontWeight: 'bold', fontSize: '1.1rem' }}>Dessert (100g serving)</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold', fontSize: '1.1rem' }}>Calories</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold', fontSize: '1.1rem' }}>Fat (g)</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold', fontSize: '1.1rem' }}>Carbs (g)</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold', fontSize: '1.1rem' }}>Protein (g)</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold', fontSize: '1.1rem' }}>Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -131,10 +154,28 @@ export default function BasicTable() {
                 key={row.name}
                 sx={{ 
                   '&:last-child td, &:last-child th': { border: 0 },
-                  backgroundColor: row.selected ? 'rgba(3, 201, 118, 0.1)' : 'inherit'
+                  backgroundColor: row.selected ? 'rgba(3, 201, 118, 0.1)' : 'inherit',
+                  opacity: hasSelectedRows() ? (row.selected ? 1 : 0.2) : 1,
+                  transition: 'opacity 0.2s ease-in-out'
                 }}
               >
-                <TableCell padding="checkbox">
+                <TableCell sx={{ textAlign: 'center' }}>
+                  {row.name}
+                </TableCell>
+                <TableCell sx={{ textAlign: 'center' }}>{row.calories}</TableCell>
+                <TableCell sx={{ textAlign: 'center' }}>{row.fat}</TableCell>
+                <TableCell sx={{ textAlign: 'center' }}>{row.carbs}</TableCell>
+                <TableCell sx={{ textAlign: 'center' }}>{row.protein}</TableCell>
+                <TableCell 
+                  sx={{ 
+                    color: row.status === 'successful' ? 'rgb(3, 201, 118)' : '#d32f2f',
+                    fontWeight: 'bold',
+                    textAlign: 'center'
+                  }}
+                >
+                  {row.status.toUpperCase()}
+                </TableCell>
+                <TableCell sx={{ textAlign: 'center' }}>
                   <Checkbox
                     checked={row.selected}
                     onChange={() => handleRowCheckboxChange(index)}
@@ -144,22 +185,6 @@ export default function BasicTable() {
                       } 
                     }}
                   />
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
-                <TableCell 
-                  align="right"
-                  sx={{ 
-                    color: row.status === 'successful' ? 'rgb(3, 201, 118)' : '#d32f2f',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  {row.status.toUpperCase()}
                 </TableCell>
               </TableRow>
             ))}
