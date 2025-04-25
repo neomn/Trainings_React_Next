@@ -1,19 +1,13 @@
-"use client"
+"use client";
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-});
+import Table from "@/app/components/Table";
 
 
 export default function App() {
   return (
     <>
       <h3>main page</h3>
+      <Table/>
     </>   
   );
 }
