@@ -67,7 +67,7 @@ export default function BasicTable() {
         borderRadius: '8px',
         justifyContent: 'center'
       }}>
-      <Container sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
+      <Container sx={{ display: 'flex', gap: 2, justifyContent: 'center',paddingTop: '10px', paddingBottom: '40px'}}>
         <Button variant="outlined">Outlined</Button>
         <Button variant="outlined">Outlined</Button>
         <Button variant="outlined">Outlined</Button>
@@ -77,22 +77,22 @@ export default function BasicTable() {
         maxWidth: 1500, 
         textAlign: 'center',
         '&::before': {
-          borderImage: 'linear-gradient(to left,rgb(3, 201, 118), transparent)',
+          borderImage: 'linear-gradient(to left,rgb(115, 173, 249), transparent)',
           borderImageSlice: 1,
           borderWidth: '2px'
         },
         '&::after': {
-          borderImage: 'linear-gradient(to right,rgb(3, 201, 118), transparent)',
+          borderImage: 'linear-gradient(to right,rgb(115, 173, 249), transparent)',
           borderImageSlice: 1,
           borderWidth: '2px'
         },
         '& .MuiDivider-wrapper': {
           padding: '0 24px',
-          color: 'rgb(3, 201, 118)',
+          color: 'rgb(115, 173, 249)',
           fontWeight: 'bold'
         }
       }}>Diffs Table</Divider>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ backgroundColor: 'transparent' }}>
         <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
