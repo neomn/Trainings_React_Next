@@ -55,6 +55,7 @@ export default function BasicTable() {
   };
 
   return (
+    <>
     <Stack 
       direction="column" 
       spacing={2} 
@@ -67,7 +68,12 @@ export default function BasicTable() {
         borderRadius: '8px',
         justifyContent: 'center'
       }}>
-      <Container direction="row" sx={{ display: 'flex', gap: 2, justifyContent: 'center',paddingTop: '10px', paddingBottom: '40px'}}>
+      <Container direction="row" sx={{ 
+        display: 'flex', 
+        gap: 2, 
+        justifyContent: 'center',
+        paddingTop: '10px', 
+        paddingBottom: '40px'}}>
         <Autocomplete
           disablePortal
           options={["127.0.0.1"]}
@@ -76,11 +82,17 @@ export default function BasicTable() {
         />      
         <Autocomplete
           disablePortal
-          options={["127.0.0.1"]}
+          options={["Core", "ESB", "Monitoring"]}
           sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Source IP" />}
+          renderInput={(params) => <TextField {...params} label="Owner Team" />}
         />
       </Container>
+      <Stack direction="row" spacing={2} justifyContent="center">
+        <Button variant="outlined">Outlined</Button>
+        <Button variant="outlined">Outlined</Button>
+        <Button variant="outlined">Outlined</Button>
+        <Button variant="outlined">Outlined</Button>
+      </Stack>
       <Divider sx={{ 
         width: '100%', 
         maxWidth: 1500, 
@@ -101,6 +113,7 @@ export default function BasicTable() {
           fontWeight: 'bold'
         }
       }}>Diffs Table</Divider>
+
       <TableContainer component={Paper} sx={{ backgroundColor: 'transparent' }}>
         <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -201,5 +214,6 @@ export default function BasicTable() {
         </Table>
       </TableContainer>
     </Stack>
+    </>
   );
 }
