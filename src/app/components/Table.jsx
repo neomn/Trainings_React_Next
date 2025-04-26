@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Container, Divider, Stack, Checkbox, FormControlLabel } from '@mui/material';
+import { Container, Divider, Stack, Checkbox, FormControlLabel, Autocomplete, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 
@@ -67,10 +67,19 @@ export default function BasicTable() {
         borderRadius: '8px',
         justifyContent: 'center'
       }}>
-      <Container sx={{ display: 'flex', gap: 2, justifyContent: 'center',paddingTop: '10px', paddingBottom: '40px'}}>
-        <Button variant="outlined">Outlined</Button>
-        <Button variant="outlined">Outlined</Button>
-        <Button variant="outlined">Outlined</Button>
+      <Container direction="row" sx={{ display: 'flex', gap: 2, justifyContent: 'center',paddingTop: '10px', paddingBottom: '40px'}}>
+        <Autocomplete
+          disablePortal
+          options={["127.0.0.1"]}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Source IP" />}
+        />      
+        <Autocomplete
+          disablePortal
+          options={["127.0.0.1"]}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Source IP" />}
+        />
       </Container>
       <Divider sx={{ 
         width: '100%', 
